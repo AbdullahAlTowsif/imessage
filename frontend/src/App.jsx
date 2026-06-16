@@ -1,25 +1,15 @@
-import './App.css'
-import { Show, SignInButton, SignUpButton, UserButton } from '@clerk/react'
+import { createBrowserRouter } from "react-router";
+import ChatPage from "./pages/ChatPage";
+import AuthPage from "./pages/AuthPage";
+import ProtectedRoute from "./AuthCheck";
 
-function App() {
-
-  return (
-    <>
-      <div>
-        <h1>iMessage</h1>
-
-        <header>
-          <Show when="signed-out">
-            <SignInButton mode='modal' />
-            <SignUpButton mode='modal' />
-          </Show>
-          <Show when="signed-in">
-            <UserButton />
-          </Show>
-        </header>
-      </div>
-    </>
-  )
-}
-
-export default App
+export const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <ProtectedRoute><ChatPage /></ProtectedRoute>,
+    },
+    {
+        path: "/auth",
+        element: <AuthPage />,
+    },
+]);
