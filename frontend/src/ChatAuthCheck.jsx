@@ -2,8 +2,7 @@ import { Navigate } from "react-router";
 import { useAuth } from "@clerk/react";
 import PageLoader from "./components/PageLoader";
 
-
-const AuthProtectedRoute = ({ children }) => {
+const ProtectedRoute = ({ children }) => {
     const { isLoaded, isSignedIn } = useAuth();
 
     // Show loader while Clerk is checking auth
@@ -12,11 +11,11 @@ const AuthProtectedRoute = ({ children }) => {
     }
 
     // Redirect if not signed in
-    if (isSignedIn) {
-        return <Navigate to="/" replace />;
+    if (!isSignedIn) {
+        return <Navigate to="/auth" replace />;
     }
 
     return children;
 };
 
-export default AuthProtectedRoute;
+export default ProtectedRoute;

@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router";
 import ChatPage from "./pages/ChatPage";
 import AuthPage from "./pages/AuthPage";
-import ProtectedRoute from "./AuthCheck";
+import ProtectedRoute from "./ChatAuthCheck";
+import AuthProtectedRoute from "./AuthCheck";
 
 export const router = createBrowserRouter([
     {
@@ -10,6 +11,6 @@ export const router = createBrowserRouter([
     },
     {
         path: "/auth",
-        element: <AuthPage />,
+        element: <AuthProtectedRoute><AuthPage /></AuthProtectedRoute>,
     },
 ]);
